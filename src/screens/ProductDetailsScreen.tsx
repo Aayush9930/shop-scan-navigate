@@ -18,16 +18,18 @@ export default function ProductDetailsScreen() {
   const { data: products, isLoading, error } = useQuery({
     queryKey: ['product', barcode],
     queryFn: () => getProductDetails(barcode),
-    onSuccess: (data) => {
-      if (data && data.length > 0) {
-        addToHistory({
-          id: barcode,
-          name: data[0].title,
-          price: `${data[0].currency} ${data[0].price}`,
-          date: new Date().toISOString(),
-        });
+    meta: {
+      onSuccess: (data) => {
+        if (data && data.length > 0) {
+          addToHistory({
+            id: barcode,
+            name: data[0].title,
+            price: `${data[0].currency} ${data[0].price}`,
+            date: new Date().toISOString(),
+          });
+        }
       }
-    },
+    }
   });
 
   if (isLoading) {
