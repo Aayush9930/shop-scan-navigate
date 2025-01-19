@@ -51,6 +51,7 @@
     "expo": "^52.0.25",
     "expo-barcode-scanner": "^13.0.1",
     "expo-haptics": "^14.0.1",
+    "fast-xml2js": "^1.0.8",
     "input-otp": "^1.2.4",
     "lucide-react": "^0.462.0",
     "next-themes": "^0.3.0",
