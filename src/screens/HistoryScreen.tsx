@@ -1,10 +1,13 @@
 import React from 'react';
 import { StyleSheet, View, Text, FlatList, TouchableOpacity } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Animated, { FadeInUp } from 'react-native-reanimated';
+import { RootStackParamList } from '../types/navigation';
 
-// Mock data - Replace with actual data storage
+type NavigationProp = NativeStackNavigationProp<RootStackParamList, 'History'>;
+
 const mockHistory = [
   { id: '1', name: 'Product 1', date: '2024-02-20', price: '$9.99' },
   { id: '2', name: 'Product 2', date: '2024-02-19', price: '$15.99' },
@@ -12,9 +15,9 @@ const mockHistory = [
 ];
 
 export default function HistoryScreen() {
-  const navigation = useNavigation();
+  const navigation = useNavigation<NavigationProp>();
 
-  const renderItem = ({ item, index }) => (
+  const renderItem = ({ item, index }: { item: any; index: number }) => (
     <Animated.View
       entering={FadeInUp.delay(index * 100)}
     >

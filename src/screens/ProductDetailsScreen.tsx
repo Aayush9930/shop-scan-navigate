@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { StyleSheet, View, Text, ScrollView, ActivityIndicator } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useRoute, RouteProp } from '@react-navigation/native';
 import { useQuery } from '@tanstack/react-query';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import Animated, { FadeInUp } from 'react-native-reanimated';
+import { RootStackParamList } from '../types/navigation';
 
-// Mock API call - Replace with actual API integration
+type ProductDetailsRouteProp = RouteProp<RootStackParamList, 'ProductDetails'>;
+
 const fetchProductDetails = async (barcode) => {
   // Simulate API call
   await new Promise(resolve => setTimeout(resolve, 1500));
@@ -21,7 +23,7 @@ const fetchProductDetails = async (barcode) => {
 };
 
 export default function ProductDetailsScreen() {
-  const route = useRoute();
+  const route = useRoute<ProductDetailsRouteProp>();
   const { barcode } = route.params;
 
   const { data: product, isLoading, error } = useQuery({
